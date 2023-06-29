@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,17 @@ Route::get('/', function () {
     return view('address', [
         'user' => $user
     ]);
+});
+
+Route::get('/create', function () {
+    $user = User::find(1);
+
+    $user->address()->create([
+        'line_1' => '38 Code Road'
+    ]);
+
+    // Address::forceCreate([
+    //     'user_id' => 1,
+    //     'line_1' => '38 Code Lane'
+    // ]);
 });
