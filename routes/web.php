@@ -35,3 +35,11 @@ Route::get('/create', function () {
     //     'line_1' => '38 Code Lane'
     // ]);
 });
+
+Route::get('/update', function () {
+    $user = User::find(1);
+
+    $user->address()->update([
+        'line_1' => '1 Eloquent Lane'
+    ]);
+});
