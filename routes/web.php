@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AddressCreateController;
+use App\Http\Controllers\AddressDestroyController;
+use App\Http\Controllers\AddressEditController;
+use App\Http\Controllers\AddressIndexController;
+use App\Http\Controllers\AddressPatchController;
+use App\Http\Controllers\AddressStoreController;
 use App\Models\Address;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -15,37 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $user = User::find(1);
-
-    return view('address', [
-        'user' => $user
-    ]);
-});
-
-Route::get('/create', function () {
-    $user = User::find(1);
-
-    $user->address()->create([
-        'line_1' => '100 Code Lane'
-    ]);
-
-    // Address::forceCreate([
-    //     'user_id' => 1,
-    //     'line_1' => '38 Code Lane'
-    // ]);
-});
-
-Route::get('/update', function () {
-    $user = User::find(1);
-
-    $user->address()->update([
-        'line_1' => '1 Eloquent Lane'
-    ]);
-});
-
-Route::get('/delete', function () {
-    $user = User::find(1);
-
-    $user->address()->delete();
-});
+Route::get('/address', AddressIndexController::class);
+Route::get('/address/create', AddressCreateController::class);
+Route::post('/address', AddressStoreController::class);
+Route::get('/address/edit', AddressEditController::class);
+Route::patch('/address', AddressPatchController::class);
+Route::delete('/address', AddressDestroyController::class);
