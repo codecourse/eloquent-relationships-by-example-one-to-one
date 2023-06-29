@@ -27,7 +27,7 @@ Route::get('/create', function () {
     $user = User::find(1);
 
     $user->address()->create([
-        'line_1' => '38 Code Road'
+        'line_1' => '100 Code Lane'
     ]);
 
     // Address::forceCreate([
